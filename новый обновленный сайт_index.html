@@ -1,0 +1,98 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>СПОРТ.LIVE | Прямые трансляции</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+        body { background-color: #0b0e14; color: #fff; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        header { background: #1e2530; padding: 15px; border-bottom: 2px solid #e01e37; text-align: center; }
+        .logo { font-weight: 800; font-size: 24px; text-transform: uppercase; margin-bottom: 10px; }
+        .logo span { color: #e01e37; }
+        
+        .match-selector { display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; }
+        .match-btn { background: #232936; color: #fff; border: 1px solid #384256; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: 700; }
+        .match-btn.active { background: #e01e37; border-color: #e01e37; }
+
+        .container { display: flex; flex: 1; padding: 20px; gap: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
+        .video-column { flex: 3; display: flex; flex-direction: column; gap: 15px; }
+        .video-box { aspect-ratio: 16 / 9; background: #000; border-radius: 8px; overflow: hidden; }
+        #player { width: 100%; height: 100%; border: none; }
+
+        /* Кнопки Донат и Канал */
+        .controls-panel { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn { padding: 12px 20px; border-radius: 6px; text-decoration: none; color: #fff; font-weight: 700; font-size: 14px; text-align: center; transition: 0.3s; flex: 1; min-width: 200px; }
+        .btn-donate { background: #e01e37; }
+        .btn-donate:hover { background: #c0182e; }
+        .btn-channel { background: #0088cc; }
+        .btn-channel:hover { background: #006699; }
+
+        .chat-box { flex: 1; min-width: 300px; height: 550px; background: #131722; border-radius: 8px; overflow: hidden; border: 1px solid #232936; }
+        #chatIframe { width: 100%; height: 100%; border: none; }
+
+        @media (max-width: 800px) { .container { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">СПОРТ<span>.LIVE</span></div>
+        <div class="match-selector">
+            <button class="match-btn active" onclick="switchMatch(1)">МАТЧ 1</button>
+            <button class="match-btn" onclick="switchMatch(2)">МАТЧ 2</button>
+            <button class="match-btn" onclick="switchMatch(3)">МАТЧ 3</button>
+            <button class="match-btn" onclick="switchMatch(4)">МАТЧ 4</button>
+            <button class="match-btn" onclick="switchMatch(5)">МАТЧ 5</button>
+            <button class="match-btn" onclick="switchMatch(6)">МАТЧ 6</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="video-column">
+            <div class="video-box"><iframe id="player" src="" allowfullscreen></iframe></div>
+            
+            <div class="controls-panel">
+                <a href="ССЫЛКА_НА_ДОНАТ" target="_blank" class="btn btn-donate">💰 ПОДДЕРЖАТЬ СТРИМ (ДОНАТ)</a>
+                <a href="ССЫЛКА_НА_КАНАЛ" target="_blank" class="btn btn-channel">📢  ПОДПИСАТЬСЯ НА КАНАЛ</a>
+            </div>
+        </section>
+        
+        <section class="chat-box"><iframe id="chatIframe" src=""></iframe></section>
+    </div>
+
+    <script>
+        const streams = {
+            1: "ССЫЛКА_ПЛЕЕРА_1", 
+			2: "ССЫЛКА_ПЛЕЕРА_2", 
+			3: "ССЫЛКА_ПЛЕЕРА_3",
+            4: "ССЫЛКА_ПЛЕЕРА_4", 
+			5: "ССЫЛКА_ПЛЕЕРА_5", 
+			6: "ССЫЛКА_ПЛЕЕРА_6"
+        };
+        const chats = {
+            1: "https://chatbro.com/embed/ЧАТ_ID_1?status_bar=true&header=false",
+14:55
+2: "https://chatbro.com/embed/ЧАТ_ID_2?status_bar=true&header=false",
+            3: "https://chatbro.com/embed/ЧАТ_ID_3?status_bar=true&header=
+
+false",
+            4: "https://chatbro.com/embed/ЧАТ_ID_4?status_bar=true&header=false",
+            5: "https://chatbro.com/embed/ЧАТ_ID_5?status_bar=true&header=false",
+            6: "https://chatbro.com/embed/ЧАТ_ID_6?status_bar=true&header=false"
+        };
+
+        document.getElementById('player').src = streams[1];
+        document.getElementById('chatIframe').src = chats[1];
+
+        function switchMatch(id) {
+            document.querySelectorAll('.match-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('player').src = streams[id];
+            document.getElementById('chatIframe').src = chats[id];
+        }
+    </script>
+</body>
+</html>
+```
